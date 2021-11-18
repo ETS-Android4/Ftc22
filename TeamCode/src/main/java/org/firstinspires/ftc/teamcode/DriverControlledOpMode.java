@@ -64,16 +64,10 @@ public class DriverControlledOpMode extends LinearOpMode {
     private DcMotor rightBackMotor;
     private DcMotor rightFrontMotor;
 
-    private Servo handServo;
     private Servo armServo;
+    private CRServo carouselMotor;
 
-    private Servo launchServo;
-    private DcMotor launchMotor;
-
-    private CRServo loaderMotor;
-
-    private boolean loaderOn;
-    private boolean launcherOn;
+    private CRServo armMotor;
 
     // Declare OpMode members.
     private ElapsedTime runtime = new ElapsedTime();
@@ -91,19 +85,16 @@ public class DriverControlledOpMode extends LinearOpMode {
         rightBackMotor = hardwareMap.get(DcMotor.class, "rightBackMotor");
         rightFrontMotor = hardwareMap.get(DcMotor.class, "rightFrontMotor");
 
-        handServo = hardwareMap.get(Servo.class, "handServo");
         armServo = hardwareMap.get(Servo.class, "armServo");
+        carouselMotor = hardwareMap.get(CRServo.class, "carouselMotor");
 
-        launchServo = hardwareMap.get(Servo.class, "launchServo");
-        launchMotor = hardwareMap.get(DcMotor.class, "launchMotor");
-
-        loaderMotor = hardwareMap.get(CRServo.class, "loaderMotor");
+        armMotor = hardwareMap.get(CRServo.class, "armMotor");
 
 
 
         drive = new MecanumWheels(leftBackMotor, leftFrontMotor, rightBackMotor, rightFrontMotor);
-        arm = new Arm(launchServo, loaderMotor);
-        carousel = new Carousel(launchMotor);
+        arm = new Arm(armServo, armMotor);
+        carousel = new Carousel(carouselMotor);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
