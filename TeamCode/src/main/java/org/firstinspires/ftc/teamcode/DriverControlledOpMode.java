@@ -108,6 +108,7 @@ public class DriverControlledOpMode extends LinearOpMode {
 
             arm.up(gamepad1.dpad_up);
             arm.down(gamepad1.dpad_down);
+            arm.open(gamepad1.a);
 
             carousel.on(gamepad1.right_bumper);
 
