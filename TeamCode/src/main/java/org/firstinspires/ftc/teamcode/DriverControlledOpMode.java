@@ -106,23 +106,8 @@ public class DriverControlledOpMode extends LinearOpMode {
             double x = gamepad1.right_stick_x;
             drive.drive(gamepad1.right_stick_x, gamepad1.right_stick_y, gamepad1.left_stick_x, gamepad1.left_stick_y);
 
-            if(gamepad1.a) {
-
-            }
-
-            if(gamepad1.b) {
-
-            }
-
             arm.up(gamepad1.dpad_up);
             arm.down(gamepad1.dpad_down);
-
-            if(gamepad1.dpad_left) {
-
-            }
-            if(gamepad1.dpad_right) {
-
-            }
 
             carousel.on(gamepad1.right_bumper);
 

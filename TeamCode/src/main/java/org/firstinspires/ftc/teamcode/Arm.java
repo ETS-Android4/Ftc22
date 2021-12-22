@@ -14,7 +14,7 @@ public class Arm {
     public Arm(Servo servo, CRServo motor ) {
         this.servo = servo;
         this.motor = motor;
-        motor.setDirection(DcMotorSimple.Direction.FORWARD);
+        motor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
     public void up(boolean isPressed) {
         if (isPressed) {
@@ -31,7 +31,15 @@ public class Arm {
             motor.setPower(0.0);
         }
     }
-    public void open() { servo.setPosition(1.0); }
-    public void close() { servo.setPosition(0.0); }
+
+    public void open(boolean isPressed) {
+        if (isPressed) {
+            servo.setPosition(1.0);
+        } else {
+            servo.setPosition(0.0);
+        }
+    }
+    //public void open() { servo.setPosition(1.0); }
+    //public void close() { servo.setPosition(0.0); }
 
 }
