@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode;
+/*package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -9,6 +9,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.util.Range;
+import com.sun.tools.javac.tree.DCTree;
+
 import java.lang.Math;
 
 
@@ -21,7 +23,7 @@ public class AutoOpMode extends LinearOpMode {
     private Arm arm;
     private Carousel carousel;
 
-    private DcMotor leftBackMotor;
+    private CRServo leftBackMotor;
     private DcMotor leftFrontMotor;
     private DcMotor rightBackMotor;
     private DcMotor rightFrontMotor;
@@ -29,10 +31,9 @@ public class AutoOpMode extends LinearOpMode {
     private Servo handServo;
     private Servo armServo;
 
-    private Servo launchServo;
-    private DcMotor launchMotor;
+    private DcMotor carouselMotor;
 
-    private CRServo loaderMotor;
+    private CRServo armMotor;
 
     private boolean loaderOn;
     private boolean launcherOn;
@@ -50,7 +51,7 @@ public class AutoOpMode extends LinearOpMode {
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        leftBackMotor = hardwareMap.get(DcMotor.class, "leftBackMotor");
+        leftBackMotor = hardwareMap.get(CRServo.class, "leftBackMotor");
         leftFrontMotor = hardwareMap.get(DcMotor.class, "leftFrontMotor");
         rightBackMotor = hardwareMap.get(DcMotor.class, "rightBackMotor");
         rightFrontMotor = hardwareMap.get(DcMotor.class, "rightFrontMotor");
@@ -58,15 +59,15 @@ public class AutoOpMode extends LinearOpMode {
         handServo = hardwareMap.get(Servo.class, "handServo");
         armServo = hardwareMap.get(Servo.class, "armServo");
 
-        launchMotor = hardwareMap.get(DcMotor.class, "launchMotor");
+        carouselMotor = hardwareMap.get(DcMotor.class, "carouselMotor");
 
-        loaderMotor = hardwareMap.get(CRServo.class, "loaderMotor");
+        armMotor = hardwareMap.get(CRServo.class, "armMotor");
 
         sensorColor = hardwareMap.colorSensor.get("sensorColor");
 
         drive = new MecanumWheels(leftBackMotor, leftFrontMotor, rightBackMotor, rightFrontMotor);
-        arm = new Arm(launchServo, loaderMotor);
-        carousel = new Carousel(launchMotor);
+        arm = new Arm(armServo, armMotor);
+        carousel = new Carousel(carouselMotor);
 
         // Wait for the game to start (driver presses PLAY)
         waitForStart();
@@ -115,3 +116,4 @@ public class AutoOpMode extends LinearOpMode {
         sensorColor.enableLed(false);
     }
 }
+*/

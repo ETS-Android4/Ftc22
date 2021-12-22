@@ -59,13 +59,13 @@ public class DriverControlledOpMode extends LinearOpMode {
     private Arm arm;
     private Carousel carousel;
 
-    private DcMotor leftBackMotor;
+    private CRServo leftBackMotor;
     private DcMotor leftFrontMotor;
     private DcMotor rightBackMotor;
     private DcMotor rightFrontMotor;
 
     private Servo armServo;
-    private CRServo carouselMotor;
+    private DcMotor carouselMotor;
 
     private CRServo armMotor;
 
@@ -80,13 +80,13 @@ public class DriverControlledOpMode extends LinearOpMode {
         // Initialize the hardware variables. Note that the strings used here as parameters
         // to 'get' must correspond to the names assigned during the robot configuration
         // step (using the FTC Robot Controller app on the phone).
-        leftBackMotor = hardwareMap.get(DcMotor.class, "leftBackMotor");
+        leftBackMotor = hardwareMap.get(CRServo.class, "leftBackMotor");
         leftFrontMotor = hardwareMap.get(DcMotor.class, "leftFrontMotor");
         rightBackMotor = hardwareMap.get(DcMotor.class, "rightBackMotor");
         rightFrontMotor = hardwareMap.get(DcMotor.class, "rightFrontMotor");
 
         armServo = hardwareMap.get(Servo.class, "armServo");
-        carouselMotor = hardwareMap.get(CRServo.class, "carouselMotor");
+        carouselMotor = hardwareMap.get(DcMotor.class, "carouselMotor");
 
         armMotor = hardwareMap.get(CRServo.class, "armMotor");
 
@@ -102,9 +102,9 @@ public class DriverControlledOpMode extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            double y = gamepad1.right_stick_y;
-            double x = -gamepad1.right_stick_x;
-            drive.drive(Math.atan2(y, x)+(Math.PI), Math.sqrt(y*y+x*x)*2, gamepad1.left_stick_x*2);
+            double y = -gamepad1.right_stick_y;
+            double x = gamepad1.right_stick_x;
+            drive.drive(gamepad1.right_stick_x, gamepad1.right_stick_y, gamepad1.left_stick_x, gamepad1.left_stick_y);
 
             if(gamepad1.a) {
 
@@ -114,12 +114,9 @@ public class DriverControlledOpMode extends LinearOpMode {
 
             }
 
-            if(gamepad1.dpad_up) {
+            arm.up(gamepad1.dpad_up);
+            arm.down(gamepad1.dpad_down);
 
-            }
-            if(gamepad1.dpad_down) {
-
-            }
             if(gamepad1.dpad_left) {
 
             }
@@ -127,9 +124,7 @@ public class DriverControlledOpMode extends LinearOpMode {
 
             }
 
-            if(gamepad1.right_bumper) {
-
-            }
+            carousel.on(gamepad1.right_bumper);
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());
