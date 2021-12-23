@@ -102,15 +102,53 @@ public class DriverControlledOpMode extends LinearOpMode {
 
         // run until the end of the match (driver presses STOP)
         while (opModeIsActive()) {
-            double y = -gamepad1.right_stick_y;
-            double x = gamepad1.right_stick_x;
-            drive.drive(gamepad1.right_stick_x, gamepad1.right_stick_y, gamepad1.left_stick_x, gamepad1.left_stick_y);
+            //double y = -gamepad1.right_stick_y;
+            //double x = gamepad1.right_stick_x;
+            if (Math.abs(gamepad1.right_stick_x) < 0.25 || Math.abs(gamepad1.right_stick_y) < 0.25) {
+                drive.drive(gamepad2.right_stick_x * 0.1, gamepad2.right_stick_y * 0.1, gamepad2.left_stick_x * 0.1, gamepad2.left_stick_y * 0.1);
+            } else {
+                drive.drive(gamepad1.right_stick_x, gamepad1.right_stick_y, gamepad1.left_stick_x, gamepad1.left_stick_y);
+            }
 
-            arm.up(gamepad1.dpad_up);
-            arm.down(gamepad1.dpad_down);
-            arm.open(gamepad1.a);
+            if (gamepad2.dpad_up) {
+                arm.up();
+            } else {
+                arm.neutral();
+            }
+            if (gamepad2.dpad_down) {
+                arm.down();
+            } else {
+                arm.neutral();
+            }
 
-            carousel.on(gamepad1.right_bumper);
+            if (gamepad2.left_bumper) {
+                arm.open();
+            } else {
+                arm.close();
+            }
+
+            /*if (gamepad1.dpad_up) {
+                arm.up();
+            } else {
+                arm.neutral();
+            }
+            if (gamepad1.dpad_down) {
+                arm.down();
+            } else {
+                arm.neutral();
+            }
+
+            if (gamepad1.left_bumper) {
+                arm.open();
+            } else {
+                arm.close();
+            }*/
+
+            if (gamepad1.right_bumper) {
+                carousel.on();
+            } else {
+                carousel.off();
+            }
 
             // Show the elapsed game time and wheel power.
             telemetry.addData("Status", "Run Time: " + runtime.toString());

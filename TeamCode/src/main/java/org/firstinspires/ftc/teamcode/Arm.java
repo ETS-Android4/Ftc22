@@ -16,30 +16,11 @@ public class Arm {
         this.motor = motor;
         motor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
-    public void up(boolean isPressed) {
-        if (isPressed) {
-            motor.setPower(1.0);
-        } else {
-            motor.setPower(0.0);
-        }
-    }
-    public void pause() { motor.setPower(0.0); }
-    public void down(boolean isPressed) {
-        if (isPressed) {
-            motor.setPower(-1.0);
-        } else {
-            motor.setPower(0.0);
-        }
-    }
+    public void up() { motor.setPower(1.0); }
+    public void neutral() { motor.setPower(0.0); }
+    public void down() { motor.setPower(-1.0); }
 
-    public void open(boolean isPressed) {
-        if (isPressed) {
-            servo.setPosition(1.0);
-        } else {
-            servo.setPosition(0.0);
-        }
-    }
-    //public void open() { servo.setPosition(1.0); }
-    //public void close() { servo.setPosition(0.0); }
+    public void open() { servo.setPosition(1.0); }
+    public void close() { servo.setPosition(0.0); }
 
 }

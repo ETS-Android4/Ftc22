@@ -13,14 +13,8 @@ public class Carousel {
 
     public Carousel(DcMotor motor ) {
         this.motor = motor;
-        motor.setDirection(DcMotorSimple.Direction.FORWARD);
+        motor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
-    public void on(boolean isPressed) {
-        if (isPressed) {
-            motor.setPower(1.0);
-        } else {
-            motor.setPower(0.0);
-        }
-    }
-
+    public void on() { motor.setPower(0.2); }
+    public void off() { motor.setPower(0.0); }
 }
