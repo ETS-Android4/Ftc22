@@ -107,6 +107,23 @@ public class AutoSafeOpMode extends LinearOpMode {
         // wait a few seconds
         // drive left 1.5 ft
         // cease, halt, desist, end, park
+
+        runtime.reset();
+        drive.drive(-1, 0, -1, 0);
+        while (runtime.milliseconds() < 1500) { }
+        drive.drive(0, 0, 0, 0);
+
+        carousel.on();
+
+        runtime.reset();
+        while (runtime.milliseconds() < 3000) { }
+
+        runtime.reset();
+        drive.drive(0, -1, 0, -1);
+        while (runtime.milliseconds() < 1500) { }
+        drive.drive(0, 0, 0, 0);
+
+
         while (opModeIsActive()) {
 
             // Show the elapsed game time and wheel power.
