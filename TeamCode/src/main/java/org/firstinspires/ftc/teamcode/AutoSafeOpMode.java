@@ -109,19 +109,19 @@ public class AutoSafeOpMode extends LinearOpMode {
         // cease, halt, desist, end, park
 
         runtime.reset();
-        drive.drive(-1, 0, -1, 0);
-        while (runtime.milliseconds() < 1500) { }
-        drive.drive(0, 0, 0, 0);
-
+        drive.drive(0, 1, 0, 1);
         carousel.on();
-
-        runtime.reset();
-        while (runtime.milliseconds() < 3000) { }
-
-        runtime.reset();
-        drive.drive(0, -1, 0, -1);
-        while (runtime.milliseconds() < 1500) { }
+        while (runtime.milliseconds() < 1000) { }
         drive.drive(0, 0, 0, 0);
+
+        runtime.reset();
+        while (runtime.milliseconds() < 3500) { }
+
+        runtime.reset();
+        drive.drive(-1, 0, -1, 0);
+        while (runtime.milliseconds() < 1000) { }
+        drive.drive(0, 0, 0, 0);
+        arm.open();
 
 
         while (opModeIsActive()) {
