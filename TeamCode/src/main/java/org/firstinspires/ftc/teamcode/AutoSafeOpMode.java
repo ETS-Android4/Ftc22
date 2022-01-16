@@ -123,6 +123,8 @@ public class AutoSafeOpMode extends LinearOpMode {
         drive.drive(0, 0, 0, 0);
         arm.open();
 
+        carousel.off();
+
 
         while (opModeIsActive()) {
 
