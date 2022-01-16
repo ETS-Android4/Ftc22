@@ -15,6 +15,6 @@ public class Carousel {
         this.motor = motor;
         motor.setDirection(DcMotorSimple.Direction.REVERSE);
     }
-    public void on() { motor.setPower(0.2); }
+    public void on() { motor.setPower(0.25); }
     public void off() { motor.setPower(0.0); }
 }
